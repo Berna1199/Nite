@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sorteio de 30 Motas</title>
+<meta name="description" content="Ganha uma das 30 Motas em Sorteio Semanal!" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(180deg, #000000, #071607);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transform: scale(0.88);
+    transform-origin: top center;
+    padding-top: 15px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    background: #000;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,255,0,0.25);
+    overflow: hidden;
+  }
+
+  .banner {
+    background: #00ff38;
+    color: #000;
+    text-align: center;
+    padding: 8px;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+  }
+
+  .main {
+    background: #021e02;
+    padding: 20px 15px;
+    text-align: center;
+  }
+
+  .main h1 {
+    font-size: 1.6rem;
+    color: #00ff38;
+    font-weight: 800;
+    margin: 10px 0;
+  }
+
+  .main h2 {
+    font-size: 1.8rem;
+    color: #ffee00;
+    margin: 10px 0;
+    font-weight: 800;
+  }
+
+  .note-box {
+    border: 1px solid #00ff38;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 6px auto;
+    width: 85%;
+    background: rgba(0, 255, 56, 0.05);
+    box-shadow: inset 0 0 10px rgba(0,255,0,0.1);
+  }
+
+  .note-box p {
+    font-size: 0.5rem;
+    color: #b2ffb3;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .info {
+    background: #ff7300;
+    padding: 15px 15px;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  }
+
+  .info strong {
+    font-size: 1rem;
+  }
+
+  .arrow-down {
+    font-size: 1.8rem;
+    color: #00ff38;
+    animation: bounce 1.3s infinite;
+    display: block;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .btn, .bottom-btn, .enter-btn {
+    display: inline-block;
+    background: #00ff38;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 10px 26px;
+    box-shadow: 0 0 18px #00ff38;
+    animation: pulse 1.5s infinite;
+    transition: 0.2s;
+  }
+
+  .bottom-btn, .enter-btn {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    margin: 8px 15px 0;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 10px #00ff38; }
+    50% { box-shadow: 0 0 25px #00ff38; transform: scale(1.05); }
+    100% { box-shadow: 0 0 10px #00ff38; transform: scale(1); }
+  }
+
+  .btn:hover, .bottom-btn:hover, .enter-btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 30px #00ff38;
+  }
+
+  .grand-premio {
+    text-align: center;
+    background: #000;
+    padding: 5px 10px 10px;
+    border-top: none;
+    margin-top: 0;
+  }
+
+  .grand-premio h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 0 0 5px;
+    text-shadow: 0 0 10px #00ff38;
+  }
+
+  .grand-premio img {
+    width: 100%;
+    border-radius: 0;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* overlay de fallback */
+  .fallback-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    padding: 20px;
+    text-align: center;
+  }
+  .fallback-card {
+    background: #081708;
+    border: 2px solid #00ff38;
+    padding: 18px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%;
+    color: #dfffdc;
+  }
+  .fallback-card p { margin: 6px 0 12px; font-size: 0.95rem; color: #fff; }
+  .fallback-card .manual-link {
+    display: inline-block;
+    background: #00ff38;
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 8px;
+  }
+  .fallback-card .copy-url {
+    display:block;
+    margin-top:8px;
+    font-size:0.8rem;
+    color:#bfffbf;
+    word-break:break-all;
+  }
+  .close-fallback {
+    display:block;
+    margin-top:12px;
+    color:#00ff38;
+    text-decoration:none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="banner">
+      🌟 Ganha uma das 30 Motas em Sorteio Semanal!
+    </div>
+
+    <div class="main">
+      <h1>SORTEIO<br>DE 30 MOTAS 🛵</h1>
+      <h2>5.100.000MT</h2>
+
+      <div class="note-box">
+        <p>ATÉ AO FIM DE ANO<br>POR SEMANA<br>2 MOTOS: 340 MIL</p>
+      </div>
+
+      <div class="note-box">
+        <p>INÍCIO DO PRIMEIRO TORNEIO:<br>15, 16 E 17 DE SETEMBRO</p>
+      </div>
+    </div>
+
+    <div class="info">
+      🎉 Já estás qualificada para o<br><strong>Sorteio de 30 🛵 Motas!</strong> 🎉<br><br>
+      Para participar, Registre-se agora e faça um<br>
+      depósito mínimo de 50MT/100MT.<br><br>
+
+      <div class="arrow-down">⬇️</div>
+      <a href="https://txunaplay.com/tede4f41e" class="btn external-link">REGISTRE-SE</a>
+    </div>
+
+    <a href="https://txunaplay.com/tede4f41e" class="bottom-btn external-link">Participe Agora</a>
+
+    <div class="grand-premio">
+      <h3>🏁 Grande Prêmio 🏆</h3>
+      <img src="https://i.postimg.cc/dtjF5F03/IMG-20251011-WA0026.jpg" alt="Grande Prêmio">
+      <a href="https://txunaplay.com/tede4f41e" class="enter-btn external-link">Entra Agora</a>
+    </div>
+  </div>
+
+  <!-- overlay de fallback -->
+  <div id="fallback" class="fallback-overlay" role="dialog" aria-hidden="true">
+    <div class="fallback-card">
+      <h3 style="margin:0 0 8px;color:#00ff38">Abrir no navegador</h3>
+      <p>Não foi possível abrir automaticamente no navegador. Toca no botão abaixo para abrir manualmente ou copia o link.</p>
+      <a id="manualOpen" class="manual-link" href="#" target="_blank" rel="noopener noreferrer">Abrir no navegador</a>
+      <div id="urlText" class="copy-url"></div>
+      <a id="closeFallback" class="close-fallback" href="#">Fechar</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const externalLinks = document.querySelectorAll('.external-link');
+      const fallback = document.getElementById('fallback');
+      const manualOpen = document.getElementById('manualOpen');
+      const urlText = document.getElementById('urlText');
+      const closeFallback = document.getElementById('closeFallback');
+
+      // URL alvo (se quiser usar diferentes URLs, pode ler do atributo href)
+      function openExternal(href) {
+        // tentativa 1: window.open
+        try {
+          const w = window.open(href, '_blank');
+          if (w) {
+            // abriu nova janela/aba
+            return true;
+          }
+        } catch(e){ /* ignore */ }
+
+        // tentativa 2: top location (se não for permitido, pode lançar)
+        try {
+          if (window.top && window.top !== window) {
+            window.top.location.href = href;
+            return true;
+          }
+        } catch(e){ /* ignore */ }
+
+        // tentativa 3: intent:// (android) — tenta abrir Chrome via intent
+        try {
+          const a = document.createElement('a');
+          // contruímos intent apenas se for URL https
+          if (/^https?:\/\//i.test(href) && /Android/i.test(navigator.userAgent)) {
+            const hostAndPath = href.replace(/^https?:\/\//i, '');
+            const intentUrl = 'intent://' + hostAndPath + '#Intent;scheme=https;package=com.android.chrome;end';
+            // tentar navegar por intent
+            window.location.href = intentUrl;
+            return true;
+          }
+        } catch(e){ /* ignore */ }
+
+        // tentativa 4: criar link e simular click (alguns webviews respeitam)
+        try {
+          const temp = document.createElement('a');
+          temp.href = href;
+          temp.target = '_blank';
+          temp.rel = 'noopener noreferrer';
+          document.body.appendChild(temp);
+          const ev = document.createEvent('MouseEvents');
+          ev.initMouseEvent('click', true, true, window, 0, 0,0,0,0, false,false,false,false, 0, null);
+          temp.dispatchEvent(ev);
+          temp.remove();
+          // não é possível garantir se abriu, então não retornamos true aqui
+        } catch(e){ /* ignore */ }
+
+        // Se aqui chegou, mostrar fallback manual
+        showFallback(href);
+        return false;
+      }
+
+      function showFallback(href){
+        urlText.textContent = href;
+        manualOpen.href = href;
+        fallback.style.display = 'flex';
+        fallback.setAttribute('aria-hidden', 'false');
+      }
+
+      closeFallback.addEventListener('click', function(e){
+        e.preventDefault();
+        fallback.style.display = 'none';
+        fallback.setAttribute('aria-hidden', 'true');
+      });
+
+      // intercepta cliques nos links marcados
+      externalLinks.forEach(link => {
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          const href = link.getAttribute('href');
+          // tenta abrir com a sequência de estratégias
+          openExternal(href);
+        });
+      });
+
+      // também adiciona botão manual dentro do overlay para abrir (target _blank)
+      manualOpen.addEventListener('click', function(){
+        // fecha overlay antes de abrir
+        fallback.style.display = 'none';
+        fallback.setAttribute('aria-hidden', 'true');
+        // abrir manual
+        setTimeout(()=> {
+          try { window.open(this.href, '_blank'); } catch(e) { window.location.href = this.href; }
+        }, 100);
+      });
+
+      // Se quiser testar automaticamente (opcional), pode chamar openExternal('https://txunaplay.com/tede4f41e') aqui.
+    })();
+  </script>
+
+</body>
+</html>
